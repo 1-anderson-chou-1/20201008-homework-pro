@@ -1,0 +1,40 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+struct list {
+	string title;
+	int price;
+};
+
+bool cmp(list a, list b) {
+	return a.price > b.price;
+}
+
+int main() {
+	int n;	
+	cin >> n;
+
+	struct list books[n];
+
+	for (int i = 0; i < n; i++) {
+		cin >> books[i].title >> books[i].price;
+	}
+
+	stable_sort(books, books + (sizeof(books) / sizeof(books[0])), cmp);
+
+	for (int i = 1; i < n; i++) {
+		string k;
+		if (books[i - 1].price == books[i].price) {
+			if ((int)books[i - 1].title[0] > (int)books[i].title[0]) {
+				k = books[i - 1].title;
+				books[i - 1].title = books[i].title;
+				books[i].title = k;
+			}
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		cout << books[i].title << endl;
+	}
+}

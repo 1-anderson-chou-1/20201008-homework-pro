@@ -1,0 +1,27 @@
+#include <iostream>
+#include <cctype>
+using namespace std;
+
+int main() {
+	int num = 1;
+	char check;
+	char words[100] = {};
+
+	cin.getline(words, 100);
+
+	for (int i = 0;i < 101; i++) {
+		if (isspace(words[i])) {
+			continue;
+		} else if (num % 2 == 0) {
+			words[i] = (char)tolower(words[i]);
+
+			num++;
+		} else {
+			words[i] = (char)toupper(words[i]);
+
+			num++;
+		}
+	}
+	
+	cout << words;
+}
